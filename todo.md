@@ -3,7 +3,8 @@
 - [ ] Eagle schematic
 - [ ] buying parts
 - [ ] design of case
-- [ ] basic functionality
+- [x] basic functionality
+- [ ] rename digits slowly
 - [ ] hardware tests
 
 ## Extended Tasks  

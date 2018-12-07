@@ -117,12 +117,10 @@
 //! initialize registers
 extern void RegistersInit();
 //! send byte table to time registers
-inline void SendRegistersTime(volatile uint8_t uiHour, volatile uint8_t uiMinute,
-		volatile uint8_t uiSecond, bool bWithLoad);
+inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute,
+		uint8_t uiSecond, bool bWithLoad);
 //! send zeros to time registers
 inline void ClearRegistersTime(bool bWithLoad);
-//! send byte table only to hour register
-inline void SendRegisterHour(volatile uint8_t uiHour, bool bWithLoad);
 
 /*
  *
@@ -145,8 +143,8 @@ inline void LATCH_01() {
 
 /*! @param		uitLineBuffer logic bytes of registers state
  *  @param		bWithLoad enable to reload parallel output*/
-inline void SendRegistersTime(volatile uint8_t uiHour, volatile uint8_t uiMinute,
-		volatile uint8_t uiSecond, bool bWithLoad) {
+inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute,
+		uint8_t uiSecond, bool bWithLoad) {
 	register int8_t i;
 	register uint8_t uiHourBCD = dec2bcd(uiHour);
 	register uint8_t uiMinuteBCD = dec2bcd(uiMinute);
@@ -177,19 +175,5 @@ inline void ClearRegistersTime(bool bWithLoad) {
 	}
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegistersX
-
-/*!  @param		uitBuffer logic bytes of hour state
- *   @param		bWithLoad enable to reload parallel output*/
-inline void SendRegisterHour(volatile uint8_t uiHour, bool bWithLoad) {
-	register int8_t i;
-	register uint8_t uiHourBCD = dec2bcd(uiHour);
-	for (i = 0; i < 8; i++) {
-		if (uiHourBCD) H_DATA_HIGH();
-			else H_DATA_LOW();
-		Time_CLK_01();
-		uiHourBCD = uiHourBCD >> 1;
-	}
-	if (bWithLoad) LATCH_01();
-} // END inline void SendRegisterX
 
 #endif /* 54HC595_H_ */
