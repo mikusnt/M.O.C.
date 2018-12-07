@@ -77,5 +77,15 @@ extern uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year);
 //! RTC test
 extern void DS3231_Test();
 
+/*! converts one number from decimal to bcd format */
+inline uint8_t dec2bcd(uint8_t dec) {
+	return ((dec / 10) << 4) | (dec % 10);
+} // END uint8_t dec2bcd
+
+/*! converts one number from bcd to decimal format */
+inline uint8_t bcd2dec(uint8_t bcd) {
+	return (((bcd >> 4) & 0x0F) * 10) + (bcd & 0x0F);
+} // END uint8_t bcd2dec
+
 #endif
 

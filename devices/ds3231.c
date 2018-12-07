@@ -4,19 +4,10 @@
 
 /*
  *
- * 		Funkcje wewnetrzne
+ * 		Internal functions
  *
  */
 
-/*! converts one number from decimal to bcd format */
-static inline uint8_t dec2bcd(uint8_t dec) {
-	return ((dec / 10) << 4) | (dec % 10);
-} // END uint8_t dec2bcd
-
-/*! converts one number from bcd to decimal format */
-static inline uint8_t bcd2dec(uint8_t bcd) {
-	return (((bcd >> 4) & 0x0F) * 10) + (bcd & 0x0F);
-} // END uint8_t bcd2dec
 
 /*! write one byte to I2C, 0 when error
  * @param		deviceAddr destination device address of I2C
