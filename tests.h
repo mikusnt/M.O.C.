@@ -13,5 +13,9 @@
 #define TESTS_H_
 
 #include "group_includes.h"
+#include "devices/some_devices.h"
+#include "devices/relay.h"
+#include "devices/register.h"
+
 
 #endif /* TESTS_H_ */

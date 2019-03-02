@@ -3,7 +3,7 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
 
- * $Modified: 2018-12-07 $
+ * $Modified: 2019-03-02 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -72,7 +72,7 @@ int main (void) {
 	I2C_Init();
 
 	DS3231_Init();
-	RelayStartClicking(&relay, 15 * relay.eState, RelayDataMinutes);
+	RelayTimeClicking(&relay, 15 * relay.eState, RelayDataMinutes);
 
 	wdt_enable(WDTO_2S);
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
@@ -92,6 +92,26 @@ int main (void) {
 			DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 			SendRegistersTime(RTCTime.uiHour, RTCTime.uiMinute, RTCTime.uiSecond, true);
 			bNewTime = false;
+
+			// Relay
+			if (RTCTime.uiSecond == 0) {
+				if (relay.eState == RelaySilent) {
+					if (RTCTime.uiMinute == 0) {
+						//RelayStartClicking(&relay, RTCTime.uiMinute, RelayDataHours);
+						RelayClicking(&relay, 750, 1);
+					} else if (RTCTime.uiMinute == 30) {
+						//RelayStartClicking(&relay, RTCTime.uiMinute, RelayDataMinutes);
+						RelayClicking(&relay, 375, 1);
+					}
+				} else if (relay.eState == RelayBinaryFull) {
+					if ( RTCTime.uiMinute == 0) {
+						RelayTimeClicking(&relay, RTCTime.uiHour, RelayDataHours);
+					} else if ((RTCTime.uiMinute == 15)
+						|| (RTCTime.uiMinute == 30)
+						|| (RTCTime.uiMinute == 45))
+						RelayTimeClicking(&relay, RTCTime.uiMinute, RelayDataMinutes);
+				}
+			}
 		}
 	}
 } // END int main (void)

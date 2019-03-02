@@ -19,11 +19,28 @@ void RegistersInit() {
 
 	H_DATA_DDR |= H_DATA_ADDR;
 	M_DATA_DDR |= M_DATA_ADDR;
-	S_DATA_DDR |= S_DATA_ADDR;
+	//S_DATA_DDR |= S_DATA_ADDR;
 	TIME_CLK_DATA_DDR |= TIME_CLK_DATA_ADDR;
 
 	ClearRegistersTime(true);
 } // END void RegistersInit
+
+void RegistersTest() {
+	RegistersInit();
+	uint8_t i;
+	while(1) {
+		for (i = 0; i < 10; i++) {
+			SendRegistersTime(0, i, 0, true);
+			D_MS(1000);
+			SendRegistersTime(0, i * 10, 0, true);
+			D_MS(1000);
+			SendRegistersTime(i, 0, 0, true);
+			D_MS(1000);
+			SendRegistersTime(i * 10, 0, 0, true);
+			D_MS(1000);
+		}
+	}
+} // END void RegistersTest()
 
 
 

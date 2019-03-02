@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-11-18 $
+ * $Modified: 2019-03-02 $
  * $Created: 2017-11-04 $
  * @version 1.1
  * From Matrix Clock project.
@@ -72,7 +72,7 @@
 //! number of change relay state of start sequence when numbers mode, should be even number
 #define RELAY_HIGH_START_N_COUNT 12
 
-//! time of pause between start sequqnce and number code
+//! time of pause between start sequence and number code
 #define RELAY_LOW_START_MS 1500
 
 /*
@@ -133,11 +133,15 @@ typedef struct {
 //! initialize relay and load relay state from eeprom
 extern void RelayInit(volatile Relay *r);
 //! load required data to clicking in structure
-extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType);
+extern void RelayTimeClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType);
 //! try to click bysed by data structure, called by 1 ms
 extern void RelayTryClickMS(volatile Relay *relay);
 //! rename relay state
 extern void SetRelayState(volatile Relay *relay, RelayMode eState);
-//! single click after reset relay structure
-void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number);
+//! single click after reset relay structure, click time by time clicking const
+//void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number);
+//! single click after reset relay structure, click time by variable
+void RelayClicking(volatile Relay *relay, uint16_t ui16TimeMS, uint8_t uiNumber);
+
+void RelayTest();
 #endif /* DEVICES_RELAY_H_ */

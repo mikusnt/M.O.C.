@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-12-07 $
+ * $Modified: 2019-03-02 $
  * $Created: 2017-11-04 $
  * @version 1.1
  * From Matrix Clock project.
@@ -122,6 +122,8 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute,
 //! send zeros to time registers
 inline void ClearRegistersTime(bool bWithLoad);
 
+void RegistersTest();
+
 /*
  *
  * 		Definitions of inline functions
@@ -148,18 +150,18 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute,
 	register int8_t i;
 	register uint8_t uiHourBCD = dec2bcd(uiHour);
 	register uint8_t uiMinuteBCD = dec2bcd(uiMinute);
-	register uint8_t uiSecondBCD = dec2bcd(uiSecond);
+	//register uint8_t uiSecondBCD = dec2bcd(uiSecond);
 	for (i = 0; i < 8; i++) {
 		if (uiHourBCD) H_DATA_HIGH();
 			else H_DATA_LOW();
 		if (uiMinuteBCD) M_DATA_HIGH();
 			else M_DATA_LOW();
-		if (uiSecondBCD) S_DATA_HIGH();
-			else S_DATA_LOW();
+		//if (uiSecondBCD) S_DATA_HIGH();
+		//	else S_DATA_LOW();
 		Time_CLK_01();
 		uiHourBCD = uiHourBCD >> 1;
 		uiMinuteBCD = uiMinuteBCD >> 1;
-		uiSecondBCD = uiSecondBCD >> 1;
+		//uiSecondBCD = uiSecondBCD >> 1;
 	}
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegistersTime
@@ -169,7 +171,7 @@ inline void ClearRegistersTime(bool bWithLoad) {
 	register uint8_t i;
 	H_DATA_LOW();
 	M_DATA_LOW();
-	S_DATA_LOW();
+	//S_DATA_LOW();
 	for (i = 0; i < 8; i++) {
 		Time_CLK_01();
 	}

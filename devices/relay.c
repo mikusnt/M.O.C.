@@ -70,7 +70,7 @@ void RelayInit(volatile Relay *r) {
 /*!@param 		relay pointer of relay structure
  * @param 		uiByteInfo data byte to click
  * @param 		dataType type of byte*/
-void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType) {
+void RelayTimeClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType) {
 	if (relay->eState != RelayOFF) {
 
 		// load data to structure
@@ -175,7 +175,7 @@ void SetRelayState(volatile Relay *relay, RelayMode eState) {
 //! @param		relay pointer of relay structure
 //! @param		type of click
 //! @param		number of clicks
-void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
+/*void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
 	if (relay->eState != RelayOFF) {
 		RelayReset(relay);
 
@@ -202,3 +202,32 @@ void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
 		RelayTryClickMS(relay);
 	}
 } // END void RelayOneClick
+*/
+
+//! @param		relay pointer of relay structure
+//! @param		time of click on milliseconds
+//! @param		number of clicks
+void RelayClicking(volatile Relay *relay, uint16_t ui16TimeMS, uint8_t uiNumber) {
+	if (relay->eState != RelayOFF) {
+		RelayReset(relay);
+		relay->ui16ActTimeMS = 1;
+		relay->ui16StartLength = uiNumber * 2;
+		relay->uiByteLength = 1;
+
+		relay ->ui16StartTimeMS = ui16TimeMS;
+	}
+} // END void RelayClicking
+
+void RelayTest() {
+	Relay relay;
+	RelayInit(&relay);
+	while(1) {
+		RelayClicking(&relay, 100, 10);
+		D_MS(1000);
+		RelayClicking(&relay, 1000, 10);
+		D_MS(1000);
+		RelayTimeClicking(&relay, 240, RelayDataNumber);
+		D_MS(1000);
+	}
+} // END void RelayTest()
+

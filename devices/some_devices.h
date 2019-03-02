@@ -2,7 +2,7 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-12-07 $
+ * $Modified: 2019-03-02 $
  * $Created: 2017-11-04 $
  * @version 1.1
  * From Matrix Clock project.
@@ -68,6 +68,12 @@
 #define RM_ADDR ((1 << PD3) | (1 << PD4))
 //! check state of minute button
 #define RM_MODE() (~(((RM_PIN & RM_ADDR) >> 3) & 0x03))
+//! direction register of dot between hours and minutes lamps
+#define POINT_DDR DDRD
+//! state register of dot between hours and minutes lamps
+#define POINT_PORT PORTD
+//! address of dot between hours and minutes lamps
+#define POINT_ADDR (1 << PD1)
 
 /*
  *
@@ -81,7 +87,17 @@ extern void ButtonsInit();
 extern void Timer2Init();
 //! Initialize PCINT interrupt
 extern void PCINTInit();
+//! Initialize reisters of point
+extern void PointInit();
 //! Power reduction
 extern void PowerReduction();
+//! rename state of point
+inline void RenamePoint();
+
+extern void PointTest();
+
+inline void RenamePoint() {
+	POINT_PORT ^= POINT_ADDR;
+}
 
 #endif /* SOME_DEVICES_H_ */

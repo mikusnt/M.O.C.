@@ -37,6 +37,18 @@ void PCINTInit() {
 	PCMSK2 |= (1 << PCINT23); // Bluetooth
 } // END void PCINTInit()
 
+void PointInit() {
+	POINT_DDR |= POINT_ADDR;
+	POINT_PORT &= ~POINT_ADDR; // start with 0
+} // END void PointInit()
+
 void PowerReduction() {
 	PRR |= (1 << PRTIM1); // turn off Timer1
 }
+
+void PointTest() {
+	PointInit();
+	while(1) {
+		RenamePoint();
+	}
+} // END void PointTest
