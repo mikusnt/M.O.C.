@@ -2,9 +2,9 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-11-18 $
+ * $Modified: 2019-03-03 $
  * $Created: 2017-11-04 $
- * @version 1.1
+ * @version 1.2
  * From Matrix Clock project.
  *
  *
@@ -90,6 +90,8 @@ extern void CopyDateTime(TimeDate *from, TimeDate *to);
 extern void WriteDateTimeToEEProm(TimeDate *time);
 //! read from EEPROM date (only) of set date and time
 extern void ReadDateTimeFromEEProm(TimeDate *time);
+
+extern void SlowlyDecrementTime(TimeDate *from, TimeDate *to);
 
 /*
  *

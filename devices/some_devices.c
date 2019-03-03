@@ -25,30 +25,30 @@ void Timer2Init() {
 	TCCR2B |= (1 << CS22) | (1 << CS21);
 	// odblokowanie przerwan
 	TIMSK2 |= (1 << OCIE2A);
-	OCR2A = 78; //dla 20 MHz
-	//OCR2A = 39; // 8 MHz
+	OCR2A = 31; //dla 20 MHz
+	//OCR2A = 31; // 8 MHz
 } // END void Timer2Init
 
 void PCINTInit() {
 	SQW_DDR &= ~SQW_ADDR;
 
-	PCICR |= (1 << PCIE1) | (1 << PCIE2); // unlock interrupt group 8-14 and 16-23
-	PCMSK1 |= (1 << PCINT9); // SQW
-	PCMSK2 |= (1 << PCINT23); // Bluetooth
+	PCICR |= (1 << PCIE1); // unlock interrupt group 8-14 and 16-23
+	PCMSK1 |= (1 << PCINT11); // SQW
+	//PCMSK2 |= (1 << PCINT23); // Bluetooth
 } // END void PCINTInit()
 
-void PointInit() {
-	POINT_DDR |= POINT_ADDR;
-	POINT_PORT &= ~POINT_ADDR; // start with 0
+void NeonInit() {
+	NEON_DDR |= NEON_ADDR;
+	NEON_PORT &= ~NEON_ADDR; // start with 0
 } // END void PointInit()
 
 void PowerReduction() {
 	PRR |= (1 << PRTIM1); // turn off Timer1
 }
 
-void PointTest() {
-	PointInit();
+void NeonTest() {
 	while(1) {
-		RenamePoint();
+		NeonRename();
+		D_S(1);
 	}
 } // END void PointTest

@@ -2,12 +2,12 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2019-03-02 $
+ * $Modified: 2019-03-03 $
  * $Created: 2017-11-04 $
- * @version 1.1
+ * @version 1.0
  * From Matrix Clock project.
  *
- * Used uC pins: ...<br>
+ * Used uC pins: 5<br>
  * Header file containing configuration of timers, rename time and relay mode buttons.
  */
 
@@ -29,51 +29,57 @@
 //! value register of square wave second signal from DS3231
 #define SQW_PIN PINC
 //! address register of square wave second signal from DS3231
-#define SQW_ADDR (1 << PC1)
+#define SQW_ADDR (1 << PC3)
 //! check state of square wave second signal from DS3231
 #define SQW_IS_HIGH() (SQW_PIN & SQW_ADDR)
 
 // Hour
 //! direction register of hour button
-#define HOUR_DDR DDRD
+#define HOUR_DDR DDRB
 //! state register of hour button
-#define HOUR_PORT PORTD
+#define HOUR_PORT PORTB
 //! value register of hour button
-#define HOUR_PIN PIND
+#define HOUR_PIN PINB
 //! address register of hour button
-#define HOUR_ADDR (1 << PD1)
+#define HOUR_ADDR (1 << PB1)
 //! check state of hour button
-#define HOUR_IS_HIGH() (HOUR_PIN & HOUR_ADDR)
+#define HOUR_IS_ON() (!(HOUR_PIN & HOUR_ADDR))
 
 // Minute
 //! direction register of minute button
-#define MINUTE_DDR DDRD
+#define MINUTE_DDR DDRB
 //! state register of minute button
-#define MINUTE_PORT PORTD
+#define MINUTE_PORT PORTB
 //! value register of minute button
-#define MINUTE_PIN PIND
+#define MINUTE_PIN PINB
 //! address register of minute button
-#define MINUTE_ADDR (1 << PD2)
+#define MINUTE_ADDR (1 << PB0)
 //! check state of minute button
-#define MINUTE_IS_HIGH() (MINUTE_PIN & MINUTE_ADDR)
+#define MINUTE_IS_ON() (!(MINUTE_PIN & MINUTE_ADDR))
 
 // Relay mode
 //! direction register of minute button
-#define RM_DDR DDRD
+#define RM_DDR DDRB
 //! state register of minute button
-#define RM_PORT PORTD
+#define RM_PORT PORTB
 //! value register of minute button
-#define RM_PIN PIND
+#define RM_PIN PINB
 //! address register of minute button
-#define RM_ADDR ((1 << PD3) | (1 << PD4))
+#define RM_ADDR ((1 << PB2) | (1 << PB3))
 //! check state of minute button
-#define RM_MODE() (~(((RM_PIN & RM_ADDR) >> 3) & 0x03))
-//! direction register of dot between hours and minutes lamps
-#define POINT_DDR DDRD
-//! state register of dot between hours and minutes lamps
-#define POINT_PORT PORTD
-//! address of dot between hours and minutes lamps
-#define POINT_ADDR (1 << PD1)
+#define RELAY_MODE() ((~((RM_PIN & RM_ADDR) >> 2)) & 0x03)
+
+
+//! direction register of neon between hours and minutes lamps
+#define NEON_DDR DDRD
+//! state register of neon between hours and minutes lamps
+#define NEON_PORT PORTD
+//! address of neon between hours and minutes lamps
+#define NEON_ADDR (1 << PD7)
+//! set neon state to high
+#define NEON_ON() NEON_PORT |= NEON_ADDR
+//! set neon state to low
+#define NEON_OFF() NEON_PORT &= ~NEON_ADDR
 
 /*
  *
@@ -87,17 +93,17 @@ extern void ButtonsInit();
 extern void Timer2Init();
 //! Initialize PCINT interrupt
 extern void PCINTInit();
-//! Initialize reisters of point
-extern void PointInit();
+//! Initialize reisters of neon
+extern void NeonInit();
 //! Power reduction
 extern void PowerReduction();
 //! rename state of point
-inline void RenamePoint();
-
-extern void PointTest();
-
-inline void RenamePoint() {
-	POINT_PORT ^= POINT_ADDR;
+inline void NeonRename();
+//! simple blinking test of neon
+extern void NeonTest();
+//! rename neon state
+inline void NeonRename() {
+	NEON_PORT ^= NEON_ADDR;
 }
 
 #endif /* SOME_DEVICES_H_ */

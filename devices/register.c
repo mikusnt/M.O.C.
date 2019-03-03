@@ -14,7 +14,7 @@ void RegistersInit() {
 	Y_RESET_DDR |= Y_RESET_ADDR;*/
 
 	LATCH_DDR |= LATCH_ADDR;
-	Y_ON();
+	//Y_ON();
 
 
 	H_DATA_DDR |= H_DATA_ADDR;
@@ -28,16 +28,17 @@ void RegistersInit() {
 void RegistersTest() {
 	RegistersInit();
 	uint8_t i;
+	uint16_t time = 1000;
 	while(1) {
-		for (i = 0; i < 10; i++) {
+		for (i = 1; i < 10; i++) {
 			SendRegistersTime(0, i, 0, true);
-			D_MS(1000);
+			D_MS(time);
 			SendRegistersTime(0, i * 10, 0, true);
-			D_MS(1000);
+			D_MS(time);
 			SendRegistersTime(i, 0, 0, true);
-			D_MS(1000);
+			D_MS(time);
 			SendRegistersTime(i * 10, 0, 0, true);
-			D_MS(1000);
+			D_MS(time);
 		}
 	}
 } // END void RegistersTest()

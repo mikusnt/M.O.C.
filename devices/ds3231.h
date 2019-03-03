@@ -2,9 +2,9 @@
  * @file ds3231.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-11-18 $
+ * $Modified: 2019-03-03 $
  * $Created: 2017-11-10 $
- * @version 1.1
+ * @version 1.2
  * From Matrix Clock project.
  *
  * Used uC pins: 0<br>
@@ -80,6 +80,11 @@ extern void DS3231_Test();
 /*! converts one number from decimal to bcd format */
 inline uint8_t dec2bcd(uint8_t dec) {
 	return ((dec / 10) << 4) | (dec % 10);
+} // END uint8_t dec2bcd
+
+/*! converts one number from decimal to bcd format, reversed digits */
+inline uint8_t dec2bcdrev(uint8_t dec) {
+	return (dec / 10)  | ((dec % 10) << 4);
 } // END uint8_t dec2bcd
 
 /*! converts one number from bcd to decimal format */

@@ -1,0 +1,27 @@
+var register_8h =
+[
+    [ "H_DATA_ADDR", "register_8h.html#a115119ac5f7e8b40ccef1c6633d75f49", null ],
+    [ "H_DATA_DDR", "register_8h.html#a301e025d747cc7bcc3a3601355128ea8", null ],
+    [ "H_DATA_HIGH", "register_8h.html#ac7842724292b3650d7a960b420df775a", null ],
+    [ "H_DATA_LOW", "register_8h.html#adc793192f90ffc6fa1698e038730214d", null ],
+    [ "H_DATA_PORT", "register_8h.html#aca3075532908cfb8032470886c16022a", null ],
+    [ "LATCH_ADDR", "register_8h.html#a92b315b44d7c8c2f541a374caab2982f", null ],
+    [ "LATCH_DDR", "register_8h.html#a4e0f3556888414c5a86b8a819c39a7f8", null ],
+    [ "LATCH_HIGH", "register_8h.html#a7444e2c102d6289fdee3c660ce30c862", null ],
+    [ "LATCH_LOW", "register_8h.html#a5406f95dcd2126672fcbc3eedf661feb", null ],
+    [ "LATCH_PORT", "register_8h.html#aab2112372ec35551b5e2b9616918cdd5", null ],
+    [ "M_DATA_ADDR", "register_8h.html#afb069e00e151a0469b0c4449a091f536", null ],
+    [ "M_DATA_DDR", "register_8h.html#aec1ea12a6483c446eab2e10c5de505d6", null ],
+    [ "M_DATA_HIGH", "register_8h.html#ace4adf9822a0f20e1d8f150bc0afc287", null ],
+    [ "M_DATA_LOW", "register_8h.html#ad1c3997f7651beceafb079616ed65349", null ],
+    [ "M_DATA_PORT", "register_8h.html#a9ad26ffeac226a3c5d75308652a2422a", null ],
+    [ "TIME_CLK_DATA_ADDR", "register_8h.html#aeac8da27d47106658f3bb279c951f060", null ],
+    [ "TIME_CLK_DATA_DDR", "register_8h.html#a39cae8771568732aced3162ddba47127", null ],
+    [ "TIME_CLK_DATA_PORT", "register_8h.html#abaed721a779a91fc5385aeece1a4270b", null ],
+    [ "ClearRegistersTime", "register_8h.html#a52c4dbde0097576096bf418c5f9e607d", null ],
+    [ "LATCH_01", "register_8h.html#a855f24ec481eabddea299c362082134d", null ],
+    [ "RegistersInit", "register_8h.html#ace7a27d184ecc91dc7c057b1372c3d9a", null ],
+    [ "RegistersTest", "register_8h.html#ab88e06151ba2fd5fdd144f9762bfad7c", null ],
+    [ "SendRegistersTime", "register_8h.html#ad3ea23798ee1e3e85d1989975351de1e", null ],
+    [ "Time_CLK_01", "register_8h.html#aec93032838fb8960bf22c785f2eacb2f", null ]
+];

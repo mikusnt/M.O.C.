@@ -85,3 +85,24 @@ void ReadDateTimeFromEEProm(TimeDate *time) {
 	eeprom_busy_wait();
 } // END void ReadDateTimeEEProm
 
+void SlowlyDecrementTime(TimeDate *from, TimeDate *to) {
+	int8_t i;
+
+	if (from->uitSingleTime[5] != to->uitSingleTime[5]) {
+		from->uitSingleTime[5] = to->uitSingleTime[5];
+	}
+
+	for (i = 4; i >= 0; i--) {
+		if (from->uitSingleTime[i] > to->uitSingleTime[i]) {
+			from->uitSingleTime[i]--;
+			LoadToDecimalTime(from);
+			return;
+		}
+		if (from->uitSingleTime[i] < to->uitSingleTime[i]) {
+			from->uitSingleTime[i] = to->uitSingleTime[i];
+		}
+	}
+
+	LoadToDecimalTime(from);
+}
+

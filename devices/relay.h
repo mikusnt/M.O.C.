@@ -2,9 +2,9 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2019-03-02 $
+ * $Modified: 2019-03-03 $
  * $Created: 2017-11-04 $
- * @version 1.1
+ * @version 1.2
  * From Matrix Clock project.
  *
  * Used uC pins: 1<br>
@@ -28,11 +28,11 @@
 
 // IO
 //! direction register of relay
-#define RELAY_DDR DDRC
+#define RELAY_DDR DDRD
 //! state register of relay
-#define RELAY_PORT PORTC
+#define RELAY_PORT PORTD
 //! relay address
-#define RELAY_ADDR (1 << PC3)
+#define RELAY_ADDR (1 << PD0)
 //! reverse relay state
 #define RELAY_CH() RELAY_PORT ^= RELAY_ADDR
 //! checks relay state
@@ -67,7 +67,7 @@
 #define RELAY_HIGH_START_H_COUNT 6
 
 //! number of change relay state of start sequence when minutes mode, should be even number
-#define RELAY_HIGH_START_M_COUNT 6
+#define RELAY_HIGH_START_M_COUNT 0
 
 //! number of change relay state of start sequence when numbers mode, should be even number
 #define RELAY_HIGH_START_N_COUNT 12
@@ -138,10 +138,8 @@ extern void RelayTimeClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDa
 extern void RelayTryClickMS(volatile Relay *relay);
 //! rename relay state
 extern void SetRelayState(volatile Relay *relay, RelayMode eState);
-//! single click after reset relay structure, click time by time clicking const
-//void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number);
 //! single click after reset relay structure, click time by variable
 void RelayClicking(volatile Relay *relay, uint16_t ui16TimeMS, uint8_t uiNumber);
-
-void RelayTest();
+//! simple tests of relay dunctions, relay must be initialized
+void RelayTest(volatile Relay *relay);
 #endif /* DEVICES_RELAY_H_ */

@@ -6,7 +6,7 @@
 
 #include "relay.h"
 
-uint8_t eeRelayState EEMEM = 1;
+uint8_t eeRelayState EEMEM = RelaySilent;
 
 /*
  *
@@ -94,7 +94,7 @@ void RelayTimeClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType 
 				while (uiByteInfo >= 60) uiByteInfo -= 60;
 				if (uiByteInfo > 0)
 					relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
-				relay->ui16StartLength = 0;
+				relay->ui16StartLength = RELAY_HIGH_START_M_COUNT;
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
 			} break;
 			case RelayDataNumber: {
@@ -172,62 +172,32 @@ void SetRelayState(volatile Relay *relay, RelayMode eState) {
 	}
 } // END void SetRelayState
 
-//! @param		relay pointer of relay structure
-//! @param		type of click
-//! @param		number of clicks
-/*void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
-	if (relay->eState != RelayOFF) {
-		RelayReset(relay);
-
-		relay->ui16ActTimeMS = 1;
-		relay->ui16StartLength = number * 2;
-		relay->uiByteLength = 1;
-		switch (type) {
-			case RelayClickStartFast: {
-				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_NUMBER;
-			} break;
-			case RelayClickStart: {
-				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
-			} break;
-			case RelayClickFast: {
-				relay->ui16StartTimeMS = RELAY_SHORT_HIGH_TIME;
-			} break;
-			case RelayClickSlow: {
-				relay->ui16StartTimeMS = RELAY_LONG_HIGH_TIME;
-			} break;
-			default: {
-				RelayReset(relay);
-			}
-		}
-		RelayTryClickMS(relay);
-	}
-} // END void RelayOneClick
-*/
 
 //! @param		relay pointer of relay structure
-//! @param		time of click on milliseconds
-//! @param		number of clicks
+//! @param		ui16TimeMS time of click in milliseconds
+//! @param		uiNumber number of clicks
 void RelayClicking(volatile Relay *relay, uint16_t ui16TimeMS, uint8_t uiNumber) {
 	if (relay->eState != RelayOFF) {
 		RelayReset(relay);
 		relay->ui16ActTimeMS = 1;
 		relay->ui16StartLength = uiNumber * 2;
 		relay->uiByteLength = 1;
+		relay->bWithData = false;
 
 		relay ->ui16StartTimeMS = ui16TimeMS;
+
+		RelayTryClickMS(relay);
 	}
 } // END void RelayClicking
 
-void RelayTest() {
-	Relay relay;
-	RelayInit(&relay);
+void RelayTest(volatile Relay *relay) {
 	while(1) {
-		RelayClicking(&relay, 100, 10);
-		D_MS(1000);
-		RelayClicking(&relay, 1000, 10);
-		D_MS(1000);
-		RelayTimeClicking(&relay, 240, RelayDataNumber);
-		D_MS(1000);
+		RelayClicking(relay, 100, 3);
+		D_S(5);
+		RelayClicking(relay, 1000, 3);
+		D_S(5);
+		RelayTimeClicking(relay, 240, RelayDataNumber);
+		D_S(15);
 	}
 } // END void RelayTest()
 

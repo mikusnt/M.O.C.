@@ -1,12 +1,12 @@
 ## Basic Tasks
 - [x] project structure
-- [ ] Eagle schematic
-- [ ] buying parts
+- [x] Eagle schematics
+- [x] buying parts
 - [ ] design of case
 - [x] basic functionality
-- [ ] rename digits slowly
-- [ ] hardware tests
+- [x] rename digits slowly
+- [x] hardware tests
 
 ## Extended Tasks  
-- [ ] some modes of relay
+- [x] some modes of relay
 - [ ] chroma steel case 
