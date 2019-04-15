@@ -104,5 +104,25 @@ void SlowlyDecrementTime(TimeDate *from, TimeDate *to) {
 	}
 
 	LoadToDecimalTime(from);
-}
+} // END void SlowlyDecrementTime
+
+/*! @param one first TimeDate structure to compare
+ *  @param two second TimeDate structure to compare
+ *  @return 0 when structures are the same, 1 otherwise*/
+uint8_t CompareTime(TimeDate *one, TimeDate *two) {
+	if ((one->uiDay != two->uiDay)
+		|| (one->uiMonth != two->uiMonth)
+		|| (one->uiYear != two->uiYear)
+		|| (one->uiHour != two->uiHour)
+		|| (one->uiMinute != two->uiMinute)
+		|| (one->uiSecond != two->uiSecond))
+		return 1;
+	for (uint8_t i = 0; i < 6; i++) {
+		if (one->uiSingleProgress[i] != two->uiSingleProgress[i])
+			return 1;
+		if (one->uitSingleTime[i] != two->uitSingleTime[i])
+			return 1;
+	}
+	return 0;
+} // END uint8_t CompareTime
 

@@ -110,6 +110,9 @@ Functions</h2></td></tr>
 <tr class="separator:a8badc77d213044d1d87f3479c3c799ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4019cd35c5328fd2ca98e66550660f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ae4019cd35c5328fd2ca98e66550660f6">SlowlyDecrementTime</a> (<a class="el" href="struct_time_date.html">TimeDate</a> *from, <a class="el" href="struct_time_date.html">TimeDate</a> *to)</td></tr>
 <tr class="separator:ae4019cd35c5328fd2ca98e66550660f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a261c3a2cd651f4088a49cedf27f128a3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a261c3a2cd651f4088a49cedf27f128a3">CompareTime</a> (<a class="el" href="struct_time_date.html">TimeDate</a> *one, <a class="el" href="struct_time_date.html">TimeDate</a> *two)</td></tr>
+<tr class="memdesc:a261c3a2cd651f4088a49cedf27f128a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare <a class="el" href="struct_time_date.html" title="main time structure, expected format: dd-mm-yyyy hh:mm:ss ">TimeDate</a> structures  <a href="#a261c3a2cd651f4088a49cedf27f128a3">More...</a><br /></td></tr>
+<tr class="separator:a261c3a2cd651f4088a49cedf27f128a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -121,6 +124,44 @@ Variables</h2></td></tr>
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="date__time_8h.html">date_time.h</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a261c3a2cd651f4088a49cedf27f128a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a261c3a2cd651f4088a49cedf27f128a3">&#9670;&nbsp;</a></span>CompareTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t CompareTime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_time_date.html">TimeDate</a> *&#160;</td>
+          <td class="paramname"><em>one</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_time_date.html">TimeDate</a> *&#160;</td>
+          <td class="paramname"><em>two</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>compare <a class="el" href="struct_time_date.html" title="main time structure, expected format: dd-mm-yyyy hh:mm:ss ">TimeDate</a> structures </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">one</td><td>first <a class="el" href="struct_time_date.html" title="main time structure, expected format: dd-mm-yyyy hh:mm:ss ">TimeDate</a> structure to compare </td></tr>
+    <tr><td class="paramname">two</td><td>second <a class="el" href="struct_time_date.html" title="main time structure, expected format: dd-mm-yyyy hh:mm:ss ">TimeDate</a> structure to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 when structures are the same, 1 otherwise </dd></dl>
+
+</div>
+</div>
 <a id="adbc4925650f333499f5f13ae176f7599"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adbc4925650f333499f5f13ae176f7599">&#9670;&nbsp;</a></span>CopyDateTime()</h2>
 

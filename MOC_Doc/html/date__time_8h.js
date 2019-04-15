@@ -11,13 +11,14 @@ var date__time_8h =
       [ "TimeS10Pos", "date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a4f42897f730076204802f1331ba8e8b1", null ],
       [ "TimeS0Pos", "date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a69634ead87cfc59b7111c6d4f6010a54", null ]
     ] ],
+    [ "CompareTime", "date__time_8h.html#a261c3a2cd651f4088a49cedf27f128a3", null ],
     [ "CopyDateTime", "date__time_8h.html#adbc4925650f333499f5f13ae176f7599", null ],
     [ "LoadToDecimalTime", "date__time_8h.html#a6a8e8cb1f550c6f92bd42c1d9f0ca559", null ],
     [ "LoadToSingleTime", "date__time_8h.html#a283df23ff43249b130f2beff0d604ead", null ],
     [ "ReadDateTimeFromEEProm", "date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce", null ],
     [ "ResetProgress", "date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692", null ],
     [ "SlowlyDecrementTime", "date__time_8h.html#ae4019cd35c5328fd2ca98e66550660f6", null ],
-    [ "TimeInit", "date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343", null ],
+    [ "TimeInit", "date__time_8h.html#aa271cb1d6c75a6c627604600c7751d71", null ],
     [ "TryDecrementTime", "date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44", null ],
     [ "WriteDateTimeToEEProm", "date__time_8h.html#a6a11f53d862fe361d9812a8702856e39", null ]
 ];

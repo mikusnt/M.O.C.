@@ -2,7 +2,7 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2019-03-03 $
+ * $Modified: 2019-04-15 $
  * $Created: 2017-11-04 $
  * @version 1.2
  * From Matrix Clock project.
@@ -75,7 +75,7 @@ typedef struct {
  */
 
 //! initialization of time structure
-inline void TimeInit(TimeDate *t);
+inline void TimeInit(TimeDate *t, uint8_t value);
 //! unpack decimal time to one digit time
 inline void LoadToSingleTime(TimeDate *t);
 //! reset table of progress to 0
@@ -90,6 +90,8 @@ extern void CopyDateTime(TimeDate *from, TimeDate *to);
 extern void WriteDateTimeToEEProm(TimeDate *time);
 //! read from EEPROM date (only) of set date and time
 extern void ReadDateTimeFromEEProm(TimeDate *time);
+//! compare TimeDate structures
+extern uint8_t CompareTime(TimeDate *one, TimeDate *two);
 
 extern void SlowlyDecrementTime(TimeDate *from, TimeDate *to);
 
@@ -99,11 +101,12 @@ extern void SlowlyDecrementTime(TimeDate *from, TimeDate *to);
  *
  */
 
-/*! @param 		t pointer of time structure*/
-inline void TimeInit(TimeDate *t) {
+/*! @param 		t pointer of time structure
+ *  @param		value what will be load to structure*/
+inline void TimeInit(TimeDate *t, uint8_t value) {
 	for (int i = TimeH10Pos; i <= TimeS0Pos; i++) {
-		t->uitSingleTime[i] = 0;
-		t->uiSingleProgress[i] = 0;
+		t->uitSingleTime[i] = value;
+		t->uiSingleProgress[i] = value;
 	}
 	LoadToDecimalTime(t);
 } // END inline void TimeInit

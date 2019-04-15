@@ -3,8 +3,8 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
 
- * $Modified: 2019-03-03 $
- * $Created: 2017-11-04 $
+ * $Modified: 2019-04-15 $
+ * $Created: 2018-11-04 $
  * @version 1.0
  *
  * Project main file
@@ -45,6 +45,8 @@ volatile uint8_t uiPressedCounter;
 //! time in milliseconds, counts to change state to normal time mode [0 - 3000]
 volatile uint16_t ui16SetTimeMode;
 
+bool bRefreshLampsMode;
+
 /*
  *
  *		Overflows
@@ -80,9 +82,9 @@ int main (void) {
 
 	wdt_enable(WDTO_2S);
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
+	TimeInit(&actTime, 9);
 //	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 	LoadToSingleTime(&RTCTime);
-	CopyDateTime(&RTCTime, &actTime);
 	RelayTimeClicking(&relay, 15 * RELAY_MODE(), RelayDataMinutes);
 	sei();
 	/*
@@ -92,7 +94,7 @@ int main (void) {
 	 */
 	while(1) {
 		wdt_reset();
-		SendRegistersTime(RTCTime.uiHour, RTCTime.uiMinute, RTCTime.uiSecond, true);
+
 
 		// buttons
 		if (uiPressedCounter >= 150) {
@@ -109,9 +111,11 @@ int main (void) {
 					RTCTime.uiHour = 0;
 			}
 
+			SendRegistersTime(RTCTime.uiHour, RTCTime.uiMinute, RTCTime.uiSecond, true);
+			LoadToSingleTime(&RTCTime);
+
 			uiPressedCounter = 0;;
 			ui16SetTimeMode = 1;
-			LoadToSingleTime(&RTCTime);
 		}
 
 		if (ui16SetTimeMode >= 3000) {
@@ -123,12 +127,30 @@ int main (void) {
 
 		}
 
+		// all cathodes heat on mode
+		if (bRefreshLampsMode) {
+			uint8_t value = RTCTime.uiSecond / 6;
+			value += value * 10;
+			SendRegistersTime(value, value, value, true);
+			if ((RTCTime.uiHour < 6) && (RTCTime.uiMinute == 7)) {
+				bRefreshLampsMode = false;
+				TimeInit(&actTime, 9);
+			}
+		}
+
 		// time mode
 		if (!ui16SetTimeMode) {
-			if (bNewDecrement) {
+
+
+			if (bNewDecrement && CompareTime(&actTime, &RTCTime)) {
 				bNewDecrement = false;
 				SlowlyDecrementTime(&actTime, &RTCTime);
-				SendRegistersTime(actTime.uiHour, actTime.uiMinute, actTime.uiSecond, true);
+				if ((RTCTime.uiHour < 6) && (RTCTime.uiMinute == 6)) {
+					bRefreshLampsMode = true;
+					continue;
+				}
+				if (!bRefreshLampsMode)
+					SendRegistersTime(actTime.uiHour, actTime.uiMinute, actTime.uiSecond, true);
 			}
 			if (bNewTime) {
 
@@ -141,12 +163,17 @@ int main (void) {
 				else
 					NEON_OFF();
 
+
+
 				// Relay
 				if (RTCTime.uiSecond == 0) {
 					relay.eState = RELAY_MODE();
 					if (relay.eState == RelaySilent) {
 						if (RTCTime.uiMinute == 0) {
-							RelayClicking(&relay, 750, 1);
+							if ((RTCTime.uiHour == 0) || (RTCTime.uiHour == 12))
+								RelayClicking(&relay, 750, 3);
+							else
+								RelayClicking(&relay, 750, 1);
 						} else if (RTCTime.uiMinute == 30) {
 							RelayClicking(&relay, 375, 1);
 						}

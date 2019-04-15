@@ -10,5 +10,6 @@ var searchData=
   ['b7',['b7',['../struct_flag.html#a72b5ae530cdd469bbba5c0360975645f',1,'Flag']]],
   ['bnewdecrement',['bNewDecrement',['../main_8c.html#a5f6b0540ec9fae0a15870fbc8ec92116',1,'main.c']]],
   ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]],
+  ['brefreshlampsmode',['bRefreshLampsMode',['../main_8c.html#a1bc2c913c89ef32d282165672efeff74',1,'main.c']]],
   ['bwithdata',['bWithData',['../struct_relay.html#a9af75c402b1dadddb7159a00c902ebe9',1,'Relay']]]
 ];

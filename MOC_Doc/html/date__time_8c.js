@@ -1,5 +1,6 @@
 var date__time_8c =
 [
+    [ "CompareTime", "date__time_8c.html#a261c3a2cd651f4088a49cedf27f128a3", null ],
     [ "CopyDateTime", "date__time_8c.html#adbc4925650f333499f5f13ae176f7599", null ],
     [ "LoadToDecimalTime", "date__time_8c.html#a6a8e8cb1f550c6f92bd42c1d9f0ca559", null ],
     [ "ReadDateTimeFromEEProm", "date__time_8c.html#a8badc77d213044d1d87f3479c3c799ce", null ],

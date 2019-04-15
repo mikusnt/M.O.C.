@@ -6,6 +6,7 @@
 - [x] basic functionality
 - [x] rename digits slowly
 - [x] hardware tests
+- [x] all cathodes heat on
 
 ## Extended Tasks  
 - [x] some modes of relay

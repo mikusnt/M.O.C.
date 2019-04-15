@@ -9,7 +9,7 @@ var searchData=
   ['timedate',['TimeDate',['../struct_time_date.html',1,'']]],
   ['timeh0pos',['TimeH0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97ab0401d97013236632e1e58f522570687',1,'date_time.h']]],
   ['timeh10pos',['TimeH10Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97af8819a5f68110a080f91c7c071edb0d2',1,'date_time.h']]],
-  ['timeinit',['TimeInit',['../date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343',1,'date_time.h']]],
+  ['timeinit',['TimeInit',['../date__time_8h.html#aa271cb1d6c75a6c627604600c7751d71',1,'date_time.h']]],
   ['timem0pos',['TimeM0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a8c69ca5d18d37c5b2984f25f8f71535b',1,'date_time.h']]],
   ['timem10pos',['TimeM10Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a0c3b32416e86bab2f864400128afe7e6',1,'date_time.h']]],
   ['timer2init',['Timer2Init',['../some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c'],['../some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c']]],

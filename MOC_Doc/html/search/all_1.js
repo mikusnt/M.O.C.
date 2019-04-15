@@ -13,6 +13,7 @@ var searchData=
   ['binaryswitch',['BinarySwitch',['../data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244',1,'data_types.h']]],
   ['bnewdecrement',['bNewDecrement',['../main_8c.html#a5f6b0540ec9fae0a15870fbc8ec92116',1,'main.c']]],
   ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]],
+  ['brefreshlampsmode',['bRefreshLampsMode',['../main_8c.html#a1bc2c913c89ef32d282165672efeff74',1,'main.c']]],
   ['buttonsinit',['ButtonsInit',['../some__devices_8c.html#a04b3aaec743ab5b5051ad927f6f9bdf3',1,'ButtonsInit():&#160;some_devices.c'],['../some__devices_8h.html#a04b3aaec743ab5b5051ad927f6f9bdf3',1,'ButtonsInit():&#160;some_devices.c']]],
   ['bwithdata',['bWithData',['../struct_relay.html#a9af75c402b1dadddb7159a00c902ebe9',1,'Relay']]],
   ['byteflag',['ByteFlag',['../union_byte_flag.html',1,'']]],
