@@ -19,22 +19,19 @@
 #include "../group_includes.h"
 #include "ds3231.h"
 
-/*
- *
- *		IO macros
- *
- */
 
+// HINT optional seconds register
+#define WITH_SECONDS 1
 
 /*
- *		Hour
+ *		Hour, optional register, when no seconds minute addr will be hour addr and second addr will be minute addr, see Eagle schematic
  */
 //! direction register of hour serial data input
-#define H_DATA_DDR DDRC
+#define H_DATA_DDR DDRD
 //! state register of hour serial data input
-#define H_DATA_PORT PORTC
+#define H_DATA_PORT PORTD
 //! address of hour serial data input
-#define H_DATA_ADDR (1 << PC2)
+#define H_DATA_ADDR (1 << PD1)
 //! set high state to hour serial data input
 #define H_DATA_HIGH() H_DATA_PORT |= H_DATA_ADDR
 //! set low state to hour serial data input
@@ -45,11 +42,11 @@
  *		Minute
  */
 //! direction register of minute serial data input
-#define M_DATA_DDR DDRB
+#define M_DATA_DDR DDRC
 //! state register of minute serial data input
-#define M_DATA_PORT PORTB
+#define M_DATA_PORT PORTC
 //! address of minute serial data input
-#define M_DATA_ADDR (1 << PB5)
+#define M_DATA_ADDR (1 << PC2)
 //! set high state to minute serial data input
 #define M_DATA_HIGH() M_DATA_PORT |= M_DATA_ADDR
 //! set low state to minute serial data input
@@ -59,20 +56,18 @@
 /*
  * 		Second
  */
-/*//! direction register of second serial data input
+//! direction register of second serial data input
 #define S_DATA_DDR DDRB
 //! state register of second serial data input
 #define S_DATA_PORT PORTB
 //! address of second serial data input
-#define S_DATA_ADDR (1 << PB4)
+#define S_DATA_ADDR (1 << PB5)
 //! set high state to second serial data input
 #define S_DATA_HIGH() S_DATA_PORT |= S_DATA_ADDR
 //! set low state to second serial data input
 #define S_DATA_LOW() S_DATA_PORT &= ~S_DATA_ADDR
-*/
-/*
- *		TIME_CLK_DATA
- */
+
+
 //! direction register of clk of time data input
 #define TIME_CLK_DATA_DDR DDRC
 //! state register of clk of time data input
@@ -150,17 +145,24 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute, uint8_t uiSecond
 	register int8_t i;
 	register uint8_t uiHourBCD = dec2bcdrev(uiHour);
 	register uint8_t uiMinuteBCD = dec2bcdrev(uiMinute);
+	register uint8_t uiSecondBCD = dec2bcdrev(uiSecond);
 	//register uint8_t uiSecondBCD = dec2bcd(uiSecond);
 	for (i = 0; i < 8; i++) {
 		if (uiHourBCD % 2) H_DATA_HIGH();
 			else H_DATA_LOW();
 		if (uiMinuteBCD % 2) M_DATA_HIGH();
 			else M_DATA_LOW();
+
+		if (WITH_SECONDS) {
+			if (uiSecondBCD % 2) S_DATA_HIGH();
+				else S_DATA_LOW();
+		}
 		//if (uiSecondBCD) S_DATA_HIGH();
 		//	else S_DATA_LOW();
 		Time_CLK_01();
-		uiHourBCD = uiHourBCD >> 1;
-		uiMinuteBCD = uiMinuteBCD >> 1;
+		uiHourBCD >>= 1;
+		uiMinuteBCD >>= 1;
+		uiSecondBCD >>= 1;
 		//uiSecondBCD = uiSecondBCD >> 1;
 	}
 	if (bWithLoad) LATCH_01();

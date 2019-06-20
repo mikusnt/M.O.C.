@@ -91,13 +91,15 @@ $(document).ready(function(){initNavTree('register_8h.html','');});
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a301e025d747cc7bcc3a3601355128ea8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a301e025d747cc7bcc3a3601355128ea8">H_DATA_DDR</a>&#160;&#160;&#160;DDRC</td></tr>
+<tr class="memitem:acc88f0dade5adabfa129914437bc7dfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#acc88f0dade5adabfa129914437bc7dfe">WITH_SECONDS</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:acc88f0dade5adabfa129914437bc7dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a301e025d747cc7bcc3a3601355128ea8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a301e025d747cc7bcc3a3601355128ea8">H_DATA_DDR</a>&#160;&#160;&#160;DDRD</td></tr>
 <tr class="memdesc:a301e025d747cc7bcc3a3601355128ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of hour serial data input  <a href="#a301e025d747cc7bcc3a3601355128ea8">More...</a><br /></td></tr>
 <tr class="separator:a301e025d747cc7bcc3a3601355128ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca3075532908cfb8032470886c16022a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#aca3075532908cfb8032470886c16022a">H_DATA_PORT</a>&#160;&#160;&#160;PORTC</td></tr>
+<tr class="memitem:aca3075532908cfb8032470886c16022a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#aca3075532908cfb8032470886c16022a">H_DATA_PORT</a>&#160;&#160;&#160;PORTD</td></tr>
 <tr class="memdesc:aca3075532908cfb8032470886c16022a"><td class="mdescLeft">&#160;</td><td class="mdescRight">state register of hour serial data input  <a href="#aca3075532908cfb8032470886c16022a">More...</a><br /></td></tr>
 <tr class="separator:aca3075532908cfb8032470886c16022a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a115119ac5f7e8b40ccef1c6633d75f49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a115119ac5f7e8b40ccef1c6633d75f49">H_DATA_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PC2)</td></tr>
+<tr class="memitem:a115119ac5f7e8b40ccef1c6633d75f49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a115119ac5f7e8b40ccef1c6633d75f49">H_DATA_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PD1)</td></tr>
 <tr class="memdesc:a115119ac5f7e8b40ccef1c6633d75f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">address of hour serial data input  <a href="#a115119ac5f7e8b40ccef1c6633d75f49">More...</a><br /></td></tr>
 <tr class="separator:a115119ac5f7e8b40ccef1c6633d75f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7842724292b3650d7a960b420df775a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#ac7842724292b3650d7a960b420df775a">H_DATA_HIGH</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#aca3075532908cfb8032470886c16022a">H_DATA_PORT</a> |= <a class="el" href="register_8h.html#a115119ac5f7e8b40ccef1c6633d75f49">H_DATA_ADDR</a></td></tr>
@@ -106,13 +108,13 @@ Macros</h2></td></tr>
 <tr class="memitem:adc793192f90ffc6fa1698e038730214d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#adc793192f90ffc6fa1698e038730214d">H_DATA_LOW</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#aca3075532908cfb8032470886c16022a">H_DATA_PORT</a> &amp;= ~<a class="el" href="register_8h.html#a115119ac5f7e8b40ccef1c6633d75f49">H_DATA_ADDR</a></td></tr>
 <tr class="memdesc:adc793192f90ffc6fa1698e038730214d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set low state to hour serial data input  <a href="#adc793192f90ffc6fa1698e038730214d">More...</a><br /></td></tr>
 <tr class="separator:adc793192f90ffc6fa1698e038730214d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec1ea12a6483c446eab2e10c5de505d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#aec1ea12a6483c446eab2e10c5de505d6">M_DATA_DDR</a>&#160;&#160;&#160;DDRB</td></tr>
+<tr class="memitem:aec1ea12a6483c446eab2e10c5de505d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#aec1ea12a6483c446eab2e10c5de505d6">M_DATA_DDR</a>&#160;&#160;&#160;DDRC</td></tr>
 <tr class="memdesc:aec1ea12a6483c446eab2e10c5de505d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of minute serial data input  <a href="#aec1ea12a6483c446eab2e10c5de505d6">More...</a><br /></td></tr>
 <tr class="separator:aec1ea12a6483c446eab2e10c5de505d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ad26ffeac226a3c5d75308652a2422a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a9ad26ffeac226a3c5d75308652a2422a">M_DATA_PORT</a>&#160;&#160;&#160;PORTB</td></tr>
+<tr class="memitem:a9ad26ffeac226a3c5d75308652a2422a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a9ad26ffeac226a3c5d75308652a2422a">M_DATA_PORT</a>&#160;&#160;&#160;PORTC</td></tr>
 <tr class="memdesc:a9ad26ffeac226a3c5d75308652a2422a"><td class="mdescLeft">&#160;</td><td class="mdescRight">state register of minute serial data input  <a href="#a9ad26ffeac226a3c5d75308652a2422a">More...</a><br /></td></tr>
 <tr class="separator:a9ad26ffeac226a3c5d75308652a2422a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb069e00e151a0469b0c4449a091f536"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#afb069e00e151a0469b0c4449a091f536">M_DATA_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PB5)</td></tr>
+<tr class="memitem:afb069e00e151a0469b0c4449a091f536"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#afb069e00e151a0469b0c4449a091f536">M_DATA_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PC2)</td></tr>
 <tr class="memdesc:afb069e00e151a0469b0c4449a091f536"><td class="mdescLeft">&#160;</td><td class="mdescRight">address of minute serial data input  <a href="#afb069e00e151a0469b0c4449a091f536">More...</a><br /></td></tr>
 <tr class="separator:afb069e00e151a0469b0c4449a091f536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace4adf9822a0f20e1d8f150bc0afc287"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#ace4adf9822a0f20e1d8f150bc0afc287">M_DATA_HIGH</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#a9ad26ffeac226a3c5d75308652a2422a">M_DATA_PORT</a> |= <a class="el" href="register_8h.html#afb069e00e151a0469b0c4449a091f536">M_DATA_ADDR</a></td></tr>
@@ -121,6 +123,21 @@ Macros</h2></td></tr>
 <tr class="memitem:ad1c3997f7651beceafb079616ed65349"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#ad1c3997f7651beceafb079616ed65349">M_DATA_LOW</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#a9ad26ffeac226a3c5d75308652a2422a">M_DATA_PORT</a> &amp;= ~<a class="el" href="register_8h.html#afb069e00e151a0469b0c4449a091f536">M_DATA_ADDR</a></td></tr>
 <tr class="memdesc:ad1c3997f7651beceafb079616ed65349"><td class="mdescLeft">&#160;</td><td class="mdescRight">set low state to minute serial data input  <a href="#ad1c3997f7651beceafb079616ed65349">More...</a><br /></td></tr>
 <tr class="separator:ad1c3997f7651beceafb079616ed65349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9495c44ab1524f65828970bc150d8c63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a9495c44ab1524f65828970bc150d8c63">S_DATA_DDR</a>&#160;&#160;&#160;DDRB</td></tr>
+<tr class="memdesc:a9495c44ab1524f65828970bc150d8c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of second serial data input  <a href="#a9495c44ab1524f65828970bc150d8c63">More...</a><br /></td></tr>
+<tr class="separator:a9495c44ab1524f65828970bc150d8c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb14c8b16c11fa3febb32b4e8b9570ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca">S_DATA_PORT</a>&#160;&#160;&#160;PORTB</td></tr>
+<tr class="memdesc:afb14c8b16c11fa3febb32b4e8b9570ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">state register of second serial data input  <a href="#afb14c8b16c11fa3febb32b4e8b9570ca">More...</a><br /></td></tr>
+<tr class="separator:afb14c8b16c11fa3febb32b4e8b9570ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64553f75cdb0720a9d2615b07e885255"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a64553f75cdb0720a9d2615b07e885255">S_DATA_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PB5)</td></tr>
+<tr class="memdesc:a64553f75cdb0720a9d2615b07e885255"><td class="mdescLeft">&#160;</td><td class="mdescRight">address of second serial data input  <a href="#a64553f75cdb0720a9d2615b07e885255">More...</a><br /></td></tr>
+<tr class="separator:a64553f75cdb0720a9d2615b07e885255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf153ffd3de6f44ced29c4b3e5cd2513"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#abf153ffd3de6f44ced29c4b3e5cd2513">S_DATA_HIGH</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca">S_DATA_PORT</a> |= <a class="el" href="register_8h.html#a64553f75cdb0720a9d2615b07e885255">S_DATA_ADDR</a></td></tr>
+<tr class="memdesc:abf153ffd3de6f44ced29c4b3e5cd2513"><td class="mdescLeft">&#160;</td><td class="mdescRight">set high state to second serial data input  <a href="#abf153ffd3de6f44ced29c4b3e5cd2513">More...</a><br /></td></tr>
+<tr class="separator:abf153ffd3de6f44ced29c4b3e5cd2513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8866fb30210300bcf58814c4deea89b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a8866fb30210300bcf58814c4deea89b2">S_DATA_LOW</a>()&#160;&#160;&#160;<a class="el" href="register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca">S_DATA_PORT</a> &amp;= ~<a class="el" href="register_8h.html#a64553f75cdb0720a9d2615b07e885255">S_DATA_ADDR</a></td></tr>
+<tr class="memdesc:a8866fb30210300bcf58814c4deea89b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">set low state to second serial data input  <a href="#a8866fb30210300bcf58814c4deea89b2">More...</a><br /></td></tr>
+<tr class="separator:a8866fb30210300bcf58814c4deea89b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39cae8771568732aced3162ddba47127"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="register_8h.html#a39cae8771568732aced3162ddba47127">TIME_CLK_DATA_DDR</a>&#160;&#160;&#160;DDRC</td></tr>
 <tr class="memdesc:a39cae8771568732aced3162ddba47127"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of clk of time data input  <a href="#a39cae8771568732aced3162ddba47127">More...</a><br /></td></tr>
 <tr class="separator:a39cae8771568732aced3162ddba47127"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,7 +201,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define H_DATA_ADDR&#160;&#160;&#160;(1 &lt;&lt; PC2)</td>
+          <td class="memname">#define H_DATA_ADDR&#160;&#160;&#160;(1 &lt;&lt; PD1)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -200,7 +217,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define H_DATA_DDR&#160;&#160;&#160;DDRC</td>
+          <td class="memname">#define H_DATA_DDR&#160;&#160;&#160;DDRD</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -254,7 +271,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define H_DATA_PORT&#160;&#160;&#160;PORTC</td>
+          <td class="memname">#define H_DATA_PORT&#160;&#160;&#160;PORTD</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -356,7 +373,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define M_DATA_ADDR&#160;&#160;&#160;(1 &lt;&lt; PB5)</td>
+          <td class="memname">#define M_DATA_ADDR&#160;&#160;&#160;(1 &lt;&lt; PC2)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -372,7 +389,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define M_DATA_DDR&#160;&#160;&#160;DDRB</td>
+          <td class="memname">#define M_DATA_DDR&#160;&#160;&#160;DDRC</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -426,12 +443,98 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define M_DATA_PORT&#160;&#160;&#160;PORTB</td>
+          <td class="memname">#define M_DATA_PORT&#160;&#160;&#160;PORTC</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>state register of minute serial data input </p>
+
+</div>
+</div>
+<a id="a64553f75cdb0720a9d2615b07e885255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64553f75cdb0720a9d2615b07e885255">&#9670;&nbsp;</a></span>S_DATA_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define S_DATA_ADDR&#160;&#160;&#160;(1 &lt;&lt; PB5)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>address of second serial data input </p>
+
+</div>
+</div>
+<a id="a9495c44ab1524f65828970bc150d8c63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9495c44ab1524f65828970bc150d8c63">&#9670;&nbsp;</a></span>S_DATA_DDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define S_DATA_DDR&#160;&#160;&#160;DDRB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>direction register of second serial data input </p>
+
+</div>
+</div>
+<a id="abf153ffd3de6f44ced29c4b3e5cd2513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf153ffd3de6f44ced29c4b3e5cd2513">&#9670;&nbsp;</a></span>S_DATA_HIGH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define S_DATA_HIGH</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca">S_DATA_PORT</a> |= <a class="el" href="register_8h.html#a64553f75cdb0720a9d2615b07e885255">S_DATA_ADDR</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set high state to second serial data input </p>
+
+</div>
+</div>
+<a id="a8866fb30210300bcf58814c4deea89b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8866fb30210300bcf58814c4deea89b2">&#9670;&nbsp;</a></span>S_DATA_LOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define S_DATA_LOW</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca">S_DATA_PORT</a> &amp;= ~<a class="el" href="register_8h.html#a64553f75cdb0720a9d2615b07e885255">S_DATA_ADDR</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set low state to second serial data input </p>
+
+</div>
+</div>
+<a id="afb14c8b16c11fa3febb32b4e8b9570ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb14c8b16c11fa3febb32b4e8b9570ca">&#9670;&nbsp;</a></span>S_DATA_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define S_DATA_PORT&#160;&#160;&#160;PORTB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>state register of second serial data input </p>
 
 </div>
 </div>
@@ -480,6 +583,20 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>state register of clk of time data input </p>
+
+</div>
+</div>
+<a id="acc88f0dade5adabfa129914437bc7dfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc88f0dade5adabfa129914437bc7dfe">&#9670;&nbsp;</a></span>WITH_SECONDS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WITH_SECONDS&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

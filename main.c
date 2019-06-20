@@ -72,6 +72,7 @@ int main (void) {
 	Timer2Init();
 	PCINTInit();
 	RelayInit(&relay);
+
 	NeonInit();
 	ButtonsInit();
 
@@ -80,22 +81,20 @@ int main (void) {
 	I2C_Init();
 	DS3231_Init();
 
-	wdt_enable(WDTO_2S);
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 	TimeInit(&actTime, 9);
 //	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 	LoadToSingleTime(&RTCTime);
 	RelayTimeClicking(&relay, 15 * RELAY_MODE(), RelayDataMinutes);
 	sei();
+	//RegistersTest();
+	//wdt_enable(WDTO_2S);
 	/*
 	 *
 	 *		Main loop
 	 *
 	 */
 	while(1) {
-		wdt_reset();
-
-
 		// buttons
 		if (uiPressedCounter >= 150) {
 
@@ -196,7 +195,10 @@ ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
 	ui16Ms++;
 
-	if ((ui16Ms % 100) == 1)
+	// HINT bNewDecrement time
+	// basic - 100
+	// big - 150
+	if ((ui16Ms % 150) == 1)
 		bNewDecrement = true;
 
 
@@ -217,6 +219,7 @@ ISR(TIMER2_COMPA_vect) {
 
 //! SQW signal from DS3231 interrupt, set new time flag
 ISR(PCINT1_vect) {
+	//wdt_reset();
 	if (SQW_IS_HIGH()) {
 		bNewTime = true;
 		ui16Ms = 0;

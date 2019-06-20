@@ -19,6 +19,8 @@ void RegistersInit() {
 
 	H_DATA_DDR |= H_DATA_ADDR;
 	M_DATA_DDR |= M_DATA_ADDR;
+	if (WITH_SECONDS)
+		S_DATA_DDR |= S_DATA_ADDR;
 	//S_DATA_DDR |= S_DATA_ADDR;
 	TIME_CLK_DATA_DDR |= TIME_CLK_DATA_ADDR;
 
@@ -31,6 +33,12 @@ void RegistersTest() {
 	uint16_t time = 1000;
 	while(1) {
 		for (i = 1; i < 10; i++) {
+			if (WITH_SECONDS) {
+				SendRegistersTime(0, 0, i, true);
+				D_MS(time);
+				SendRegistersTime(0, 0, i * 10, true);
+				D_MS(time);
+			}
 			SendRegistersTime(0, i, 0, true);
 			D_MS(time);
 			SendRegistersTime(0, i * 10, 0, true);

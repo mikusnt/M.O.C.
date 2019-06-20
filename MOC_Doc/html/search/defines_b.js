@@ -1,5 +1,10 @@
 var searchData=
 [
+  ['s_5fdata_5faddr',['S_DATA_ADDR',['../register_8h.html#a64553f75cdb0720a9d2615b07e885255',1,'register.h']]],
+  ['s_5fdata_5fddr',['S_DATA_DDR',['../register_8h.html#a9495c44ab1524f65828970bc150d8c63',1,'register.h']]],
+  ['s_5fdata_5fhigh',['S_DATA_HIGH',['../register_8h.html#abf153ffd3de6f44ced29c4b3e5cd2513',1,'register.h']]],
+  ['s_5fdata_5flow',['S_DATA_LOW',['../register_8h.html#a8866fb30210300bcf58814c4deea89b2',1,'register.h']]],
+  ['s_5fdata_5fport',['S_DATA_PORT',['../register_8h.html#afb14c8b16c11fa3febb32b4e8b9570ca',1,'register.h']]],
   ['seconds_5fregister',['SECONDS_REGISTER',['../ds3231_8h.html#ab8f0cb87315228f87caa373c576c6e5b',1,'ds3231.h']]],
   ['sqw_5faddr',['SQW_ADDR',['../some__devices_8h.html#a8612914f68eb9de82ef3df62505c33ca',1,'some_devices.h']]],
   ['sqw_5fddr',['SQW_DDR',['../some__devices_8h.html#a06a23a4aa336e44cfb4c4f1f1aea0bd9',1,'some_devices.h']]],

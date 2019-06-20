@@ -21,13 +21,12 @@ void ButtonsInit() {
 void Timer2Init() {
 	// tryb CTC
 	TCCR2A |= (1 << WGM21);
-	// preskaler 8
-	TCCR2B |= (1 << CS21);
+	// 8 MHz preskaler 32 OCR2A = 250
+	TCCR2B |= (1 << CS21) | (1 << CS20);
 	// odblokowanie przerwan
 	TIMSK2 |= (1 << OCIE2A);
-	//OCR2A = 4; //dla 20 MHz preskaler 256
-	//OCR2A = 31; // 8 MHz preskaler 256
-	OCR2A = 125; // 1 MHz preskaler 8
+	// preskaler 32
+	OCR2A = 250;
 } // END void Timer2Init
 
 void PCINTInit() {
