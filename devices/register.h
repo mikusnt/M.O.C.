@@ -21,51 +21,51 @@
 
 
 // HINT optional seconds register
-#define WITH_SECONDS 1
+#define WITH_SECONDS 0
 
 /*
- *		Hour, optional register, when no seconds minute addr will be hour addr and second addr will be minute addr, see Eagle schematic
+ *		optional third, WITH_SECONDS: hours, NORMAL: -
  */
 //! direction register of hour serial data input
-#define H_DATA_DDR DDRD
+#define THIRD_DATA_DDR DDRD
 //! state register of hour serial data input
-#define H_DATA_PORT PORTD
+#define THIRD_DATA_PORT PORTD
 //! address of hour serial data input
-#define H_DATA_ADDR (1 << PD1)
+#define THIRD_DATA_ADDR (1 << PD1)
 //! set high state to hour serial data input
-#define H_DATA_HIGH() H_DATA_PORT |= H_DATA_ADDR
+#define THIRD_DATA_HIGH() THIRD_DATA_PORT |= THIRD_DATA_ADDR
 //! set low state to hour serial data input
-#define H_DATA_LOW() H_DATA_PORT &= ~H_DATA_ADDR
+#define THIRD_DATA_LOW() THIRD_DATA_PORT &= ~THIRD_DATA_ADDR
 
 
 /*
- *		Minute
+ *		second,WITH_SECONDS: minutes, NORMAL: hours
  */
 //! direction register of minute serial data input
-#define M_DATA_DDR DDRC
+#define SECOND_DATA_DDR DDRC
 //! state register of minute serial data input
-#define M_DATA_PORT PORTC
+#define SECOND_DATA_PORT PORTC
 //! address of minute serial data input
-#define M_DATA_ADDR (1 << PC2)
+#define SECOND_DATA_ADDR (1 << PC2)
 //! set high state to minute serial data input
-#define M_DATA_HIGH() M_DATA_PORT |= M_DATA_ADDR
+#define SECOND_DATA_HIGH() SECOND_DATA_PORT |= SECOND_DATA_ADDR
 //! set low state to minute serial data input
-#define M_DATA_LOW() M_DATA_PORT &= ~M_DATA_ADDR
+#define SECOND_DATA_LOW() SECOND_DATA_PORT &= ~SECOND_DATA_ADDR
 
 
 /*
- * 		Second
+ * 		first, WITH_SECONDS: seconds, NORMAL: minutes
  */
 //! direction register of second serial data input
-#define S_DATA_DDR DDRB
+#define FIRST_DATA_DDR DDRB
 //! state register of second serial data input
-#define S_DATA_PORT PORTB
+#define FIRST_DATA_PORT PORTB
 //! address of second serial data input
-#define S_DATA_ADDR (1 << PB5)
+#define FIRST_DATA_ADDR (1 << PB5)
 //! set high state to second serial data input
-#define S_DATA_HIGH() S_DATA_PORT |= S_DATA_ADDR
+#define FIRST_DATA_HIGH() FIRST_DATA_PORT |= FIRST_DATA_ADDR
 //! set low state to second serial data input
-#define S_DATA_LOW() S_DATA_PORT &= ~S_DATA_ADDR
+#define FIRST_DATA_LOW() FIRST_DATA_PORT &= ~FIRST_DATA_ADDR
 
 
 //! direction register of clk of time data input
@@ -148,14 +148,34 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute, uint8_t uiSecond
 	register uint8_t uiSecondBCD = dec2bcdrev(uiSecond);
 	//register uint8_t uiSecondBCD = dec2bcd(uiSecond);
 	for (i = 0; i < 8; i++) {
-		if (uiHourBCD % 2) H_DATA_HIGH();
-			else H_DATA_LOW();
-		if (uiMinuteBCD % 2) M_DATA_HIGH();
-			else M_DATA_LOW();
+		if (uiHourBCD % 2) {
+			if (WITH_SECONDS)
+				THIRD_DATA_HIGH();
+			else
+				SECOND_DATA_HIGH();
+		} else {
+			if (WITH_SECONDS)
+				THIRD_DATA_LOW();
+			else
+				SECOND_DATA_LOW();
+		}
+
+		if (uiMinuteBCD % 2) {
+			if (WITH_SECONDS)
+				SECOND_DATA_HIGH();
+			else
+				FIRST_DATA_HIGH();
+		} else {
+			if (WITH_SECONDS)
+				SECOND_DATA_LOW();
+			else
+				FIRST_DATA_LOW();
+
+		}
 
 		if (WITH_SECONDS) {
-			if (uiSecondBCD % 2) S_DATA_HIGH();
-				else S_DATA_LOW();
+			if (uiSecondBCD % 2) THIRD_DATA_HIGH();
+				else THIRD_DATA_LOW();
 		}
 		//if (uiSecondBCD) S_DATA_HIGH();
 		//	else S_DATA_LOW();
@@ -171,8 +191,8 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute, uint8_t uiSecond
 /*! @param		bWithLoad enable to reload parallel output*/
 inline void ClearRegistersTime(bool bWithLoad) {
 	register uint8_t i;
-	H_DATA_LOW();
-	M_DATA_LOW();
+	THIRD_DATA_LOW();
+	SECOND_DATA_LOW();
 	//S_DATA_LOW();
 	for (i = 0; i < 8; i++) {
 		Time_CLK_01();

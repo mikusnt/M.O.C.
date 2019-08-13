@@ -73,6 +73,8 @@ int main (void) {
 	PCINTInit();
 	RelayInit(&relay);
 
+
+
 	NeonInit();
 	ButtonsInit();
 
@@ -83,10 +85,13 @@ int main (void) {
 
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 	TimeInit(&actTime, 9);
-//	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
+////	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 	LoadToSingleTime(&RTCTime);
 	RelayTimeClicking(&relay, 15 * RELAY_MODE(), RelayDataMinutes);
 	sei();
+
+	//RelayTest(&relay);
+//	NeonTest();
 	//RegistersTest();
 	//wdt_enable(WDTO_2S);
 	/*
@@ -131,7 +136,7 @@ int main (void) {
 			uint8_t value = RTCTime.uiSecond / 6;
 			value += value * 10;
 			SendRegistersTime(value, value, value, true);
-			if ((RTCTime.uiHour < 6) && (RTCTime.uiMinute == 7)) {
+			if ((RTCTime.uiHour < 6) && ((RTCTime.uiMinute % 6 == 1))) {
 				bRefreshLampsMode = false;
 				TimeInit(&actTime, 9);
 			}
@@ -144,7 +149,7 @@ int main (void) {
 			if (bNewDecrement && CompareTime(&actTime, &RTCTime)) {
 				bNewDecrement = false;
 				SlowlyDecrementTime(&actTime, &RTCTime);
-				if ((RTCTime.uiHour < 6) && (RTCTime.uiMinute == 6)) {
+				if ((RTCTime.uiHour < 6) && ((RTCTime.uiMinute % 6) == 0)) {
 					bRefreshLampsMode = true;
 					continue;
 				}
@@ -197,8 +202,8 @@ ISR(TIMER2_COMPA_vect) {
 
 	// HINT bNewDecrement time
 	// basic - 100
-	// big - 150
-	if ((ui16Ms % 150) == 1)
+	// big - 120
+	if ((ui16Ms % 100) == 1)
 		bNewDecrement = true;
 
 
