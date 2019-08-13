@@ -58,17 +58,19 @@
 #define MINUTE_IS_ON() (!(MINUTE_PIN & MINUTE_ADDR))
 
 // Relay mode
-//! direction register of minute button
+//! direction register of relay mode button
 #define RM_DDR DDRB
-//! state register of minute button
+//! state register of relay mode button
 #define RM_PORT PORTB
-//! value register of minute button
+//! value register of relay mode button
 #define RM_PIN PINB
-//! address register of minute button
-#define RM_ADDR ((1 << PB2) | (1 << PB3))
-//! check state of minute button
-#define RELAY_MODE() ((~((RM_PIN & RM_ADDR) >> 2)) & 0x03)
-
+//! address register of relay mode button
+// Choose between single and double mode
+//#define RM_ADDR ((1 << PB2) | (1 << PB3))
+#define RM_ADDR (1 << PB3)
+//! check state of relay mode button
+//#define RELAY_MODE() ((~((RM_PIN & RM_ADDR) >> 2)) & 0x03)
+#define RELAY_MODE() ((~((RM_PIN & RM_ADDR) >> 3)) & 0x01)
 
 //! direction register of neon between hours and minutes lamps
 #define NEON_DDR DDRD
