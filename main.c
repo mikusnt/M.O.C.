@@ -41,7 +41,7 @@ TimeDate actTime;
 //! flag of slow decrement to high values to lowest [0 - 150]
 volatile bool bNewDecrement;
 //! time in milliseconds of presed buttons, reset when button not pressed and incremented value
-volatile uint8_t uiPressedCounter;
+volatile uint16_t ui16PressedCounter;
 //! time in milliseconds, counts to change state to normal time mode [0 - 3000]
 volatile uint16_t ui16SetTimeMode;
 
@@ -76,6 +76,7 @@ int main (void) {
 
 
 	NeonInit();
+	NEON_ON();
 	ButtonsInit();
 
 	RegistersInit();
@@ -86,13 +87,14 @@ int main (void) {
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 	TimeInit(&actTime, 9);
 ////	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
-	LoadToSingleTime(&RTCTime);
+	//LoadToSingleTime(&RTCTime);
 	RelayTimeClicking(&relay, 15 * RELAY_MODE(), RelayDataMinutes);
+	//RelayTimeClicking(&relay, 15, RelayDataMinutes);
 	sei();
 
-	//RelayTest(&relay);
-//	NeonTest();
-	//RegistersTest();
+	//RelayTest(&relay, true);
+	//NeonTest();
+	//RegistersTest(true);
 	//wdt_enable(WDTO_2S);
 	/*
 	 *
@@ -101,9 +103,9 @@ int main (void) {
 	 */
 	while(1) {
 		// buttons
-		if (uiPressedCounter >= 150) {
+		// if pressed only one and 150ms
+		if ((ui16PressedCounter >= 150) && ((MINUTE_IS_ON() && (!HOUR_IS_ON())) || ((!MINUTE_IS_ON()) && HOUR_IS_ON()))) {
 
-			RTCTime.uiSecond = 0;
 			if (MINUTE_IS_ON()) {
 				RTCTime.uiMinute++;
 				if (RTCTime.uiMinute >= 60)
@@ -115,11 +117,22 @@ int main (void) {
 					RTCTime.uiHour = 0;
 			}
 
+			RTCTime.uiSecond = 0;
 			SendRegistersTime(RTCTime.uiHour, RTCTime.uiMinute, RTCTime.uiSecond, true);
 			LoadToSingleTime(&RTCTime);
-
-			uiPressedCounter = 0;;
+			ui16PressedCounter = 0;
 			ui16SetTimeMode = 1;
+
+			// if pressed above and 1000ms
+		} else if (MINUTE_IS_ON() && HOUR_IS_ON()) {
+			if (ui16PressedCounter >= 3000) {
+				TimeInit(&actTime, 9);
+				RegistersTest(false);
+				//RelayTest(&relay, false);
+				ui16PressedCounter = 0;
+				ui16SetTimeMode = 0;
+				bNewTime = true;
+			}
 		}
 
 		if (ui16SetTimeMode >= 3000) {
@@ -136,7 +149,7 @@ int main (void) {
 			uint8_t value = RTCTime.uiSecond / 6;
 			value += value * 10;
 			SendRegistersTime(value, value, value, true);
-			if ((RTCTime.uiHour < 6) && ((RTCTime.uiMinute % 6 == 1))) {
+			if ((RTCTime.uiHour < 5) && ((RTCTime.uiMinute % 10) == 4)) {
 				bRefreshLampsMode = false;
 				TimeInit(&actTime, 9);
 			}
@@ -149,7 +162,7 @@ int main (void) {
 			if (bNewDecrement && CompareTime(&actTime, &RTCTime)) {
 				bNewDecrement = false;
 				SlowlyDecrementTime(&actTime, &RTCTime);
-				if ((RTCTime.uiHour < 6) && ((RTCTime.uiMinute % 6) == 0)) {
+				if ((RTCTime.uiHour < 5) && ((RTCTime.uiMinute % 10) == 3)) {
 					bRefreshLampsMode = true;
 					continue;
 				}
@@ -163,9 +176,9 @@ int main (void) {
 
 				bNewTime = false;
 				if (RTCTime.uiSecond % 2)
-					NEON_ON();
-				else
 					NEON_OFF();
+				else
+					NEON_ON();
 
 
 
@@ -211,12 +224,12 @@ ISR(TIMER2_COMPA_vect) {
 	if (MINUTE_IS_ON() || HOUR_IS_ON()) {
 		NEON_ON();
 		ui16SetTimeMode = 1;
-		uiPressedCounter++;
+		ui16PressedCounter++;
 	} else {
-		uiPressedCounter = 0;
+		ui16PressedCounter = 0;
 	}
 
-	if (ui16SetTimeMode && !uiPressedCounter)
+	if (ui16SetTimeMode && !ui16PressedCounter)
 		ui16SetTimeMode++;
 
 } // END ISR(TIMER2_COMPA_vect)

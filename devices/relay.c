@@ -87,19 +87,19 @@ void RelayTimeClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType 
 				} else {
 					relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
 				}
-				relay->ui16StartLength = RELAY_HIGH_START_H_COUNT;
+				relay->ui16StartLength = RELAY_START_H_COUNT;
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_HOUR;
 			} break;
 			case RelayDataMinutes: {
 				while (uiByteInfo >= 60) uiByteInfo -= 60;
 				if (uiByteInfo > 0)
 					relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
-				relay->ui16StartLength = RELAY_HIGH_START_M_COUNT;
+				relay->ui16StartLength = RELAY_START_M_COUNT;
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
 			} break;
 			case RelayDataNumber: {
 				relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
-				relay->ui16StartLength = RELAY_HIGH_START_N_COUNT;
+				relay->ui16StartLength = RELAY_START_N_COUNT;
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_NUMBER;
 			}
 		}
@@ -126,7 +126,7 @@ void RelayTryClickMS(volatile Relay *relay) {
 				if (--relay->ui16StartLength == 0) {
 					RelaySW(LOW);
 					if (relay->eDataType != RelayDataMinutes)
-						relay->ui16ActTimeMS = RELAY_LOW_START_MS;
+						relay->ui16ActTimeMS = RELAY_START_PAUSE_VALUE_MS;
 					else
 						relay->ui16ActTimeMS = 0;
 				}
@@ -190,14 +190,33 @@ void RelayClicking(volatile Relay *relay, uint16_t ui16TimeMS, uint8_t uiNumber)
 	}
 } // END void RelayClicking
 
-void RelayTest(volatile Relay *relay) {
+void RelayTest(volatile Relay *relay, bool bForeverLoop) {
 	while(1) {
 		RelayClicking(relay, 100, 3);
 		D_S(5);
 		RelayClicking(relay, 1000, 3);
 		D_S(5);
+
+		uint8_t i;
+		for(i = 0; i < 5; i++) {
+			RelayTimeClicking(relay, i, RelayDataHours);
+			D_S(10);
+
+		}
+
+
+		for(i = 1; i < 4; i++) {
+			RelayTimeClicking(relay, i * 15, RelayDataMinutes);
+			D_S(5);
+		}
+
+
+
 		RelayTimeClicking(relay, 240, RelayDataNumber);
-		D_S(15);
+		D_S(10);
+		if (!bForeverLoop){
+			break;
+		}
 	}
 } // END void RelayTest()
 

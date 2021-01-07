@@ -26,27 +26,47 @@ void RegistersInit() {
 	ClearRegistersTime(true);
 } // END void RegistersInit
 
-void RegistersTest() {
+void RegistersTest(bool bForeverLoop) {
 	RegistersInit();
 	uint8_t i;
 	uint16_t time = 1000;
+	SendRegistersTime(0, 0, 0, true);
+	D_MS(time);
 	while(1) {
-		for (i = 1; i < 10; i++) {
-			if (WITH_SECONDS) {
+		if (WITH_SECONDS) {
+			for (i = 1; i < 10; i++) {
 				SendRegistersTime(0, 0, i, true);
 				D_MS(time);
-				SendRegistersTime(0, 0, i * 10, true);
+			}
+
+			for (i = 1; i < 10; i++) {
+				SendRegistersTime(0, 0, (i * 10) + 9, true);
 				D_MS(time);
 			}
-			SendRegistersTime(0, i, 0, true);
-			D_MS(time);
-			SendRegistersTime(0, i * 10, 0, true);
-			D_MS(time);
-			SendRegistersTime(i, 0, 0, true);
-			D_MS(time);
-			SendRegistersTime(i * 10, 0, 0, true);
+
+		}
+
+		for (i = 1; i < 10; i++) {
+			SendRegistersTime(0, i, 99, true);
 			D_MS(time);
 		}
+
+		for (i = 1; i < 10; i++) {
+			SendRegistersTime(0, (i * 10) + 9, 99, true);
+			D_MS(time);
+		}
+
+		for (i = 1; i < 10; i++) {
+			SendRegistersTime(i, 99, 99, true);
+			D_MS(time);
+		}
+
+		for (i = 1; i < 10; i++) {
+			SendRegistersTime((i * 10) + 9, 99, 99, true);
+			D_MS(time);
+		}
+		if (!bForeverLoop)
+			break;
 	}
 } // END void RegistersTest()
 

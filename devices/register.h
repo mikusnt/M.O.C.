@@ -116,7 +116,7 @@ inline void SendRegistersTime(uint8_t uiHour, uint8_t uiMinute,
 //! send zeros to time registers
 inline void ClearRegistersTime(bool bWithLoad);
 //! simple test, send all digits to hour and minute registers
-void RegistersTest();
+void RegistersTest(bool bForeverLoop);
 
 /*
  *
